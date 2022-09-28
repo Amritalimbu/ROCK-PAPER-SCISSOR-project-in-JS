@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            background-color: rgb(246, 210, 216);
+        }
+        div{
+            border: 2px solid gray;
+            border-radius: 50px;
+            background-color: rgb(226, 141, 158);
+            margin: 100px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 15px 15px rgb(96, 95, 95);
+        }
+        .btn{
+            font-size: medium;
+            margin-top: 20px;
+            border-radius: 7px;
+            box-shadow: 5px 5px rgb(96, 95, 95);
+            background-color: rgb(13, 176, 174);
+        }
+        .btn:hover{
+            background-color: rgb(52, 171, 52);
+            color:black;
+        }
+
+
+        @media (max-width: 400px){
+            html,body{background-color: blueviolet;}
+            div{
+                width: 100%;
+                margin-left: 10px;
+                font-size: small;
+                
+            }
+            .btn{
+                font-size: small;
+            }
+        }
+        @media(min-width:401px) and (max-width:700px){
+            html,body{
+                background-color: rgb(95, 213, 213);
+            }
+            div{
+                text-align: center;
+                background-color: darkseagreen;
+                height: 300px;
+                width: 550px;
+                font-size: 25px;
+                margin-left: 60px;
+            }
+            .btn{
+                font-size: large;
+                background-color: brown;
+                box-shadow: 5px 5px rgb(30, 76, 42);
+            }
+        }
+        @media(min-width:701px) and (max-width:1000px){
+            div{
+            border: 2px solid gray;
+            border-radius: 50px;
+            background-color:rgb(148, 148, 183);
+            margin: 100px;
+            text-align: center;
+            margin-top: 100px;
+            box-shadow: 15px 15px rgb(96, 95, 95);
+            height: 400px;
+
+            font-size: xx-large;
+            }
+            .btn{
+                margin-top: 40px;
+                font-size: 25px;
+                background-color: rgb(56, 0, 139);
+                color: wheat;
+            }
+        }
+        @media(min-width:1001px){
+            div{
+                width: 800px;
+                height: 350px;
+                font-size: xx-large;
+            }
+            .btn{
+                font-size: xx-large;
+                border-radius: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <button class="btn">ROCK</button>
+        <button class="btn">PAPER</button>
+        <button class="btn">SCISSORS</button>
+
+        <h2 id="player">PLAYER :</h2>
+        <h2 id="computer">COMPUTER :</h2>
+        <h2 id="result">RESULT :</h2>
+    </div>
+
+    <script>
+        let btns = document.querySelectorAll(".btn");
+        btns.forEach(function(value){
+            let x=value.textContent
+            value.addEventListener("click",()=>{
+                document.getElementById("player").innerHTML=`PLAYER : ${x}`;
+                
+                compTurn()
+                document.getElementById("computer").innerHTML=`COMPUTER : ${comp}`;
+
+                let z = document.querySelector("#result");
+                let r = resultShow(x)
+                z.innerHTML=r
+                
+            })
+        })
+
+        let comp = ""
+        function compTurn(){
+            let rndm = Math.floor(Math.random()*3)+1;
+            switch(rndm){
+                case 1:
+                    comp="ROCK"
+                    break
+                case 2:
+                    comp="PAPER"
+                    break
+                case 3:
+                    comp="SCISSORS"
+                    break
+            }
+        }
+
+        function resultShow(x){
+            if(x == comp){
+                return "DRAW !";
+            }
+            else if(comp == "ROCK"){
+                return x == "PAPER" ? "YOU WIN!" : "YOU LOSE!";
+            }
+            else if(comp == "PAPER"){
+                return x == "SCISSORS" ? "YOU WIN!" : "YOU LOSE!";
+            }
+            else if(comp == "SCISSORS"){
+                return x == "ROCK" ? "YOU WIN!" : "YOU LOSE!";
+            }
+        }
+
+    </script>
+</body>
+</html>
